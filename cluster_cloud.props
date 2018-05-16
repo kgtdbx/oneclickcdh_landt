@@ -1,0 +1,100 @@
+#######################  EDIT BELOW INFORMATION  #######################
+
+#Define you hdp cluster name here
+CLUSTERNAME=hdptest
+#OS version
+OS=centos7
+#Java version
+JAVA=jdk1.8.0_151
+JAVA_HOME=/usr/java/jdk1.8.0_151
+#CM INSTALLER REPO PATH
+CM_INSTALLER_BIN=http://35.168.48.43/repo/hadoop/cloudera/cm/cm_5.13/installer/cloudera-manager-installer.bin
+#CM REPO URL
+CM_REPO_URL=http://maxiq@Uns@vedD0cument1@35.168.48.43/repo/hadoop/cloudera/cm/cm_5.13/cloudera-manager/
+#CDH PARCEL REPO PATH
+CDH_PARCEL_REPO=http://35.168.48.43/repo/hadoop/cloudera/centos7/parcels/
+#Parcel Version
+PARCEL_VERSION=5.14.2-1.cdh5.14.2.p0.3
+#Number of nodes on which you are going to install Ambari and HDP components
+NUM_OF_NODES=2
+
+
+#+++++ Remote Infrastructure++++#
+
+#Username to ssh into the nodes for Ambari and Hadoop installation
+SSH_USER=root
+#Password for above defined username
+SSH_SERVER_PASSWORD=a
+#Specify Private Key path below, if you are using private key to ssh instead of 'password'
+SSH_SERVER_PRIVATE_KEY=
+#Specify domain name
+DOMAIN_NAME=example.com
+#REPO Server wget username and password
+REPO_SERVER_WGET_USER=maxiq
+REPO_SERVER_WGET_PASS=Uns@vedD0cument1
+
+#+++++++++++++++++++++++++++++++#
+
+#Add your hostnames below ( Make sure it should be mentioned without FQDN )
+#NOTE: For Cloud Instances Please Enter Internal Hostname and IPaddress and public ipaddress for "PUBLIC_IP"
+#host 1 is considered always as Ambari Server node
+#For multinode installation replicate the entries as per number of nodes in cluster. Below is example for 2 nodes.
+
+
+HOST1=node2
+IP1=192.168.56.112
+PUBLIC_IP=192.168.56.112
+
+HOST2=node3
+IP2=192.168.56.113
+
+
+
+#######################  EDIT BELOW INFORMATION ONLY IF YOU KNOW WHAT YOU ARE DOING!! :)  #######################
+
+#Define your repository server EG. LOCAL or INTERNET. Make sure you should either use Local Repo server or Public to download packages
+#Comment unwanted entry below -
+#Repository server ipaddress
+REPO_SERVER=35.168.48.43
+
+# To download packages from Internet
+#REPO_SERVER=public
+
+
+#You can define "Services" to be installed on respective hosts with comma seperated values as mentioned below.
+#Make sure you can modify below section properly making sure all services dependencies are defined properly, else cluster installation with FAIL.
+#IMP ----> HIVE and SPARK service should reside on same node and "zookeeper-CLIENT" must present on each node except first node
+HOST1_SERVICES="hdfs-BALANCER-BASE, hdfs-NAMENODE-BASE, hdfs-SECONDARYNAMENODE-BASE, hdfs-DATANODE-BASE, yarn-RESOURCEMANAGER-BASE, yarn-JOBHISTORY-BASE, yarn-NODEMANAGER-BASE, zookeeper-SERVER-BASE,hive-GATEWAY-BASE,hive-HIVEMETASTORE-BASE,hive-HIVESERVER2-BASE,hive-WEBHCAT-BASE,spark_on_yarn-SPARK_YARN_HISTORY_SERVER-BASE,spark_on_yarn-GATEWAY-BASE"
+HOST2_SERVICES="hdfs-DATANODE-BASE,yarn-NODEMANAGER-BASE,hbase-MASTER-BASE,hbase-REGIONSERVER-BASE,zookeeper-CLIENT"
+
+
+#++++++++++++++++++++++++++++
+###For HDFS define below services
+####hdfs-BALANCER-BASE
+####hdfs-NAMENODE-BASE
+####hdfs-SECONDARYNAMENODE-BASE
+####hdfs-DATANODE-BASE
+####++++++++++++++++++++++++++++
+###For YARN define below services
+####yarn-RESOURCEMANAGER-BASE
+####yarn-JOBHISTORY-BASE
+####yarn-NODEMANAGER-BASE
+####++++++++++++++++++++++++++++
+###For ZOOKEEPER define below services
+####zookeeper-SERVER-BASE
+####++++++++++++++++++++++++++++
+###HBASE Service
+####hbase-MASTER-BASE
+####hbase-REGIONSERVER-BASE
+####++++++++++++++++++++++++++++
+###HIVE Service
+####hive-GATEWAY-BASE
+####hive-HIVEMETASTORE-BASE
+####hive-HIVESERVER2-BASE
+####hive-WEBHCAT-BASE
+####++++++++++++++++++++++++++++
+###SPARK service
+####spark_on_yarn-GATEWAY-BASE
+####spark_on_yarn-SPARK_YARN_HISTORY_SERVER-BASE
+####++++++++++++++++++++++++++++
+#
